@@ -1,0 +1,21 @@
+baseURL      = 'https://example.org/'
+languageCode = 'en-us'
+title        = 'PyData Hugo Theme — Example Site'
+
+[module]
+  [[module.imports]]
+    path = "github.com/saltstack/pydata-hugo-theme"
+
+[menus]
+  [[menus.main]]
+    name    = 'Home'
+    pageRef = '/'
+    weight  = 10
+  [[menus.main]]
+    name    = 'About'
+    pageRef = '/about'
+    weight  = 20
+
+[params]
+  [params.logo]
+    text = 'Example Site'
