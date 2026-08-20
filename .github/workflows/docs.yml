@@ -1,0 +1,85 @@
+# Builds and deploys docs/ (this theme's own documentation site, which
+# dogfoods the theme itself) to GitHub Pages on every push to main.
+#
+# docs/ resolves the theme via a local `replace => ../` (same repo, same
+# commit) rather than vendoring, so this workflow needs Go + Hugo + npm --
+# see docs/content/get-started/install.md and the module README for why
+# that's an acceptable trade-off here (this is the theme's own repo, not a
+# downstream consumer).
+name: Build and deploy docs
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    permissions:
+      pages: write
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Resolve Hugo version
+        id: hugo-version
+        run: echo "version=$(cat .hugo-version)" >> "$GITHUB_OUTPUT"
+
+      - name: Install Hugo CLI
+        run: |
+          wget -O "${{ runner.temp }}/hugo.deb" "https://github.com/gohugoio/hugo/releases/download/v${{ steps.hugo-version.outputs.version }}/hugo_extended_${{ steps.hugo-version.outputs.version }}_linux-amd64.deb"
+          sudo dpkg -i "${{ runner.temp }}/hugo.deb"
+
+      - name: Install Go
+        uses: actions/setup-go@v5
+        with:
+          go-version-file: '.go-version'
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Build docs with Hugo
+        working-directory: docs
+        env:
+          HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
+          HUGO_ENVIRONMENT: production
+        run: |
+          hugo \
+            --minify \
+            --baseURL "${{ steps.pages.outputs.base_url }}/"
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./docs/public
+
+  deploy:
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-24.04
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,6 +1,6 @@
-baseURL      = 'https://example.org/'
-languageCode = 'en-us'
-title        = 'PyData Hugo Theme — Example Site'
+baseURL = 'https://example.org/'
+locale  = 'en-US'
+title   = 'PyData Hugo Theme — Example Site'
 
 [module]
   [[module.imports]]

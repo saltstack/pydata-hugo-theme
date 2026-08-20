@@ -1,0 +1,197 @@
+baseURL = 'https://saltstack.github.io/pydata-hugo-theme/'
+locale  = 'en-US'
+title   = 'pydata-hugo-theme'
+
+[module]
+  [[module.imports]]
+    path = "github.com/saltstack/pydata-hugo-theme"
+
+[menus]
+  [[menus.main]]
+    name    = 'Docs'
+    pageRef = '/'
+    weight  = 10
+  [[menus.main]]
+    name   = 'GitHub'
+    url    = 'https://github.com/saltstack/pydata-hugo-theme'
+    weight = 20
+
+# ---------------------------------------------------------------------------
+# Sidebar navigation — mirrors the upstream PyData Sphinx Theme user guide's
+# toctree groups (see docs/content/feature-parity.md for what's intentionally
+# omitted), plus a Hugo-only-features group with no upstream counterpart.
+# ---------------------------------------------------------------------------
+[[menus.sidebar]]
+  name       = 'Get started'
+  identifier = 'get-started'
+  url        = ''
+  weight     = 10
+
+[[menus.sidebar]]
+  name   = 'Install'
+  parent = 'get-started'
+  url    = '/get-started/install/'
+  weight = 10
+
+[[menus.sidebar]]
+  name   = 'Layout'
+  parent = 'get-started'
+  url    = '/get-started/layout/'
+  weight = 20
+
+[[menus.sidebar]]
+  name       = 'Navigation and links'
+  identifier = 'navigation'
+  url        = ''
+  weight     = 20
+
+[[menus.sidebar]]
+  name   = 'Sidebar navigation'
+  parent = 'navigation'
+  url    = '/navigation/navigation/'
+  weight = 10
+
+[[menus.sidebar]]
+  name   = 'Page table of contents'
+  parent = 'navigation'
+  url    = '/navigation/page-toc/'
+  weight = 20
+
+[[menus.sidebar]]
+  name   = 'Header links'
+  parent = 'navigation'
+  url    = '/navigation/header-links/'
+  weight = 30
+
+[[menus.sidebar]]
+  name       = 'User interface'
+  identifier = 'user-interface'
+  url        = ''
+  weight     = 30
+
+[[menus.sidebar]]
+  name   = 'Announcements'
+  parent = 'user-interface'
+  url    = '/user-interface/announcements/'
+  weight = 10
+
+[[menus.sidebar]]
+  name   = 'Search'
+  parent = 'user-interface'
+  url    = '/user-interface/search/'
+  weight = 20
+
+[[menus.sidebar]]
+  name   = 'Back to top'
+  parent = 'user-interface'
+  url    = '/user-interface/back-to-top/'
+  weight = 30
+
+[[menus.sidebar]]
+  name       = 'Theming and style'
+  identifier = 'theming'
+  url        = ''
+  weight     = 40
+
+[[menus.sidebar]]
+  name   = 'Branding'
+  parent = 'theming'
+  url    = '/theming/branding/'
+  weight = 10
+
+[[menus.sidebar]]
+  name   = 'Styling'
+  parent = 'theming'
+  url    = '/theming/styling/'
+  weight = 20
+
+[[menus.sidebar]]
+  name   = 'Fonts'
+  parent = 'theming'
+  url    = '/theming/fonts/'
+  weight = 30
+
+[[menus.sidebar]]
+  name   = 'Light / dark mode'
+  parent = 'theming'
+  url    = '/theming/light-dark/'
+  weight = 40
+
+[[menus.sidebar]]
+  name       = 'Miscellaneous'
+  identifier = 'misc'
+  url        = ''
+  weight     = 50
+
+[[menus.sidebar]]
+  name   = 'Accessibility'
+  parent = 'misc'
+  url    = '/misc/accessibility/'
+  weight = 10
+
+[[menus.sidebar]]
+  name   = 'Static assets'
+  parent = 'misc'
+  url    = '/misc/static-assets/'
+  weight = 20
+
+[[menus.sidebar]]
+  name       = 'Hugo-only features'
+  identifier = 'hugo-only'
+  url        = ''
+  weight     = 60
+
+[[menus.sidebar]]
+  name   = 'Hugo Modules'
+  parent = 'hugo-only'
+  url    = '/hugo-only/hugo-modules/'
+  weight = 10
+
+[[menus.sidebar]]
+  name   = 'Menus'
+  parent = 'hugo-only'
+  url    = '/hugo-only/menus/'
+  weight = 20
+
+[[menus.sidebar]]
+  name   = 'Per-page overrides'
+  parent = 'hugo-only'
+  url    = '/hugo-only/page-overrides/'
+  weight = 30
+
+[[menus.sidebar]]
+  name   = 'Markdown render hooks'
+  parent = 'hugo-only'
+  url    = '/hugo-only/render-hooks/'
+  weight = 40
+
+[[menus.sidebar]]
+  name   = 'Content-Security-Policy'
+  parent = 'hugo-only'
+  url    = '/hugo-only/security-csp/'
+  weight = 50
+
+[[menus.sidebar]]
+  name   = 'Asset pipeline'
+  parent = 'hugo-only'
+  url    = '/hugo-only/asset-pipeline/'
+  weight = 60
+
+[[menus.sidebar]]
+  name   = 'Feature parity with upstream'
+  url    = '/feature-parity/'
+  weight = 70
+
+[params]
+  sidebar_nav_title = 'pydata-hugo-theme docs'
+  github_url        = 'https://github.com/saltstack/pydata-hugo-theme'
+
+  [params.logo]
+    text     = 'pydata-hugo-theme'
+    link     = '/'
+    alt_text = 'pydata-hugo-theme docs — home'
+
+[[params.icon_links]]
+  name = 'GitHub'
+  url  = 'https://github.com/saltstack/pydata-hugo-theme'
+  icon = 'fa-brands fa-github'
