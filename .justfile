@@ -4,19 +4,19 @@ version := `git describe --tags --abbrev=7 2>/dev/null | sed 's/^v//' || echo "0
 image := "localhost/pydata-hugo-theme-dev"
 ENGINE := env_var_or_default("USE_CONTAINER_DEV", "")
 
-# When USE_CONTAINER_DEV is set to podman/docker/container, wraps a command
-# to run inside the devcontainer image instead of on the host (build it
-# first with `just build-devcontainer`). Mounts the repo at /workspace.
-# --userns=keep-id (podman only) maps container root to the host UID/GID,
-# so files written into the bind-mounted repo aren't left root-owned.
+# When USE_CONTAINER_DEV is set to podman/docker, wraps a command to run
+# inside the devcontainer image instead of on the host (build it first with
+# `just build-devcontainer`). Mounts the repo at /workspace. --userns=keep-id
+# (podman only) maps container root to the host UID/GID, so files written
+# into the bind-mounted repo aren't left root-owned.
 wrapper := `
     if [ -n "${USE_CONTAINER_DEV:-}" ]; then
         case "${USE_CONTAINER_DEV}" in
             podman)
                 echo "podman run --rm -it --userns=keep-id -v ${PWD}:/workspace -w /workspace localhost/pydata-hugo-theme-dev:latest bash -c '"
                 ;;
-            docker|container)
-                echo "${USE_CONTAINER_DEV} run --rm -it -v ${PWD}:/workspace -w /workspace localhost/pydata-hugo-theme-dev:latest bash -c '"
+            docker)
+                echo "docker run --rm -it -v ${PWD}:/workspace -w /workspace localhost/pydata-hugo-theme-dev:latest bash -c '"
                 ;;
             *)
                 echo ""
@@ -28,7 +28,7 @@ wrapper := `
 `
 
 # Suffix to close the bash quote if running in a container wrapper
-suffix := `case "${USE_CONTAINER_DEV:-}" in podman|docker|container) echo "'" ;; *) echo "" ;; esac`
+suffix := `case "${USE_CONTAINER_DEV:-}" in podman|docker) echo "'" ;; *) echo "" ;; esac`
 
 # Default task lists all available tasks
 default:
@@ -85,7 +85,7 @@ lint:
 [group('build')]
 build-devcontainer *args:
     @if [ -z "{{ ENGINE }}" ]; then \
-        echo "USE_CONTAINER_DEV is not set. Set it to podman, docker, or container to build."; \
+        echo "USE_CONTAINER_DEV is not set. Set it to podman or docker to build."; \
         exit 1; \
     fi
     {{ ENGINE }} build {{ args }} -t {{ image }} -f .devcontainer/Dockerfile .
@@ -96,7 +96,7 @@ shell:
     #!/usr/bin/env bash
     set -euo pipefail
     if [ -z "${USE_CONTAINER_DEV:-}" ]; then
-        echo "USE_CONTAINER_DEV is not set. Set it to podman, docker, or container to use this."
+        echo "USE_CONTAINER_DEV is not set. Set it to podman or docker to use this."
         exit 1
     fi
     EXTRA_ARGS=()
