@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file. See [conventionalcommits.org](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v0.3.0](https://github.com/saltstack/pydata-hugo-theme/compare/e748eab0a1646c12705dd8f3790b441ddb1e0297..v0.3.0) - 2026-08-21
+#### Features
+- rebrand default footer credit line, make its text overridable - ([a563d49](https://github.com/saltstack/pydata-hugo-theme/commit/a563d49c124949c2ceacee594bed61c4c1c60ba8))
+#### Documentation
+- document the cold-cache vendoring gotcha for npm-mounted deps - ([e748eab](https://github.com/saltstack/pydata-hugo-theme/commit/e748eab0a1646c12705dd8f3790b441ddb1e0297))
+
+- - -
+
 ## [v0.2.0](https://github.com/saltstack/pydata-hugo-theme/compare/cac64bb507d971d5ba2119222db4eeb33541a6b2..v0.2.0) - 2026-08-21
 #### Features
 - (**justfile**) add container shell + optional container execution - ([65659b5](https://github.com/saltstack/pydata-hugo-theme/commit/65659b5ac9a79ef7619d8e2c32d99cf050196b1e))
