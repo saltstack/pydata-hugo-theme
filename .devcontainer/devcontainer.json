@@ -3,8 +3,11 @@
 {
 	"name": "pydata-hugo-theme",
 
+	// context is the repo root, not this .devcontainer/ dir (the default) --
+	// the Dockerfile COPYs .hugo-version/.node-version from the repo root.
 	"build": {
-		"dockerfile": "Dockerfile"
+		"dockerfile": "Dockerfile",
+		"context": ".."
 	},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
