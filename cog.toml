@@ -25,6 +25,10 @@ remote = "github.com"
 owner = "saltstack"
 repository = "pydata-hugo-theme"
 
+[[changelog.authors]]
+signature = "Derek Ardolf"
+username = "scriptautomate-bc"
+
 [bump_profiles]
 # Custom profiles can be added here if you have specific branching strategies
 # e.g., prerelease = { pre_bump_hooks = [...], post_bump_hooks = [...] }
