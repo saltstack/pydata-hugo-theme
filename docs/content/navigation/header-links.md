@@ -30,6 +30,8 @@ A URL is treated as internal (no new tab) if it's not `http(s)`, points back at 
 
 `github_url`/`gitlab_url`/`twitter_url` are shortcuts for the three most common icons; `icon_links` is a generic list of `{name, url, icon}` for anything else (any FontAwesome class works for `icon`). Both render in `navbar-icon-links.html`, wherever you place it in `navbar_start`/`navbar_end`/etc.
 
+Don't also add a GitHub/GitLab/Twitter entry to `icon_links` if you're already using the corresponding `*_url` shortcut for it — both render, producing two identical icons side by side.
+
 ## Overflow into a "More" dropdown
 
 `site.Menus.main` renders as top-nav links; once there are more than `header_links_before_dropdown` (default `5`) entries, the rest collapse into a dropdown labeled `header_dropdown_text` (default `'More'`):

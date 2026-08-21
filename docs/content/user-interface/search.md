@@ -4,6 +4,17 @@ title: Search
 
 Search is powered by [Fuse.js](https://www.fusejs.io/) against a build-time JSON index (`layouts/index.json`), fetched client-side — not a Sphinx-style server-generated `searchindex.js`.
 
+**Required consumer-site setup:** the index is only built when the home page's `JSON` output format is enabled. Add this to your site's `hugo.toml` (most starter configs don't enable it by default):
+
+```toml
+[outputs]
+  home    = ['HTML', 'RSS', 'JSON']
+  section = ['HTML', 'RSS']
+  page    = ['HTML']
+```
+
+Without this, `index.json` is never generated and the search box silently returns nothing — there's no visible error, just no results.
+
 ```toml
 [params]
   disable_search  = false
