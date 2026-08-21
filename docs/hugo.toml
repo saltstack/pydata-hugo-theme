@@ -11,10 +11,6 @@ title   = 'pydata-hugo-theme'
     name    = 'Docs'
     pageRef = '/'
     weight  = 10
-  [[menus.main]]
-    name   = 'GitHub'
-    url    = 'https://github.com/saltstack/pydata-hugo-theme'
-    weight = 20
 
 # ---------------------------------------------------------------------------
 # Sidebar navigation — mirrors the upstream PyData Sphinx Theme user guide's
@@ -190,8 +186,3 @@ title   = 'pydata-hugo-theme'
     text     = 'pydata-hugo-theme'
     link     = '/'
     alt_text = 'pydata-hugo-theme docs — home'
-
-[[params.icon_links]]
-  name = 'GitHub'
-  url  = 'https://github.com/saltstack/pydata-hugo-theme'
-  icon = 'fa-brands fa-github'
