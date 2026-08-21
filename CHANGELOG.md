@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file. See [conventionalcommits.org](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## [v0.4.0](https://github.com/saltstack/pydata-hugo-theme/compare/23de276262a025eb01221c24f3e8fa020fab825f..v0.4.0) - 2026-08-21
+#### Features
+- allow show_prev_next to be overridden per-page in frontmatter - ([23de276](https://github.com/saltstack/pydata-hugo-theme/commit/23de276262a025eb01221c24f3e8fa020fab825f))
+
+- - -
+
 ## [v0.3.0](https://github.com/saltstack/pydata-hugo-theme/compare/e748eab0a1646c12705dd8f3790b441ddb1e0297..v0.3.0) - 2026-08-21
 #### Features
 - rebrand default footer credit line, make its text overridable - ([a563d49](https://github.com/saltstack/pydata-hugo-theme/commit/a563d49c124949c2ceacee594bed61c4c1c60ba8))
