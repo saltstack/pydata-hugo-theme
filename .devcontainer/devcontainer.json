@@ -1,0 +1,33 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/go
+{
+	"name": "pydata-hugo-theme",
+
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	"forwardPorts": [1313],
+
+	// Installs the FontAwesome/Bootstrap npm deps mounted via [[module.mounts]].
+	"postCreateCommand": "npm ci",
+
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				// Go language support
+				"golang.go",
+				// Hugo template syntax highlighting
+				"budparr.language-hugo-vscode",
+				// TOML editing (hugo.toml, cog.toml)
+				"tamasfe.even-better-toml",
+				// justfile syntax highlighting
+				"nefrob.vscode-just-syntax"
+			]
+		}
+	}
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+}
