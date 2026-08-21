@@ -39,7 +39,7 @@ Before contributing, make sure you have:
 
 ## Environment setup
 
-The fastest path is the provided devcontainer (`.devcontainer/`), which installs everything below automatically — open this repo in VS Code with the Dev Containers extension, or any other [devcontainer-compatible](https://containers.dev/supporting) tool.
+The fastest path is the provided devcontainer (`.devcontainer/`), which installs everything below automatically — open this repo in VS Code with the Dev Containers extension, or any other [devcontainer-compatible](https://containers.dev/supporting) tool. This also works with [GitHub Codespaces](https://docs.github.com/en/codespaces/overview) — click **Code → Codespaces → Create codespace on main** on the repo page for a ready-to-go environment in the browser, no local setup at all.
 
 To set up manually instead:
 
