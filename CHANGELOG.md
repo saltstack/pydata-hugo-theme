@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file. See [conventionalcommits.org](https://www.conventionalcommits.org/) for commit guidelines.
 
-## Unreleased ([6f3e675..f87b7d3](https://github.com/saltstack/pydata-hugo-theme/compare/6f3e675..f87b7d3))
+## Unreleased ([6f3e675..49411f2](https://github.com/saltstack/pydata-hugo-theme/compare/6f3e675..49411f2))
 #### Features
 - add devcontainer for theme development - ([49ebd88](https://github.com/saltstack/pydata-hugo-theme/commit/49ebd88cf684d18ed7fbdd203704a12634046092)) - Derek Ardolf
 - add justfile for common dev tasks - ([d2b516a](https://github.com/saltstack/pydata-hugo-theme/commit/d2b516abb75460c58e4ab55f2d70d859dbe66981)) - Derek Ardolf
@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file. See [conven
 - add copy-to-clipboard button on code blocks - ([7376435](https://github.com/saltstack/pydata-hugo-theme/commit/7376435d0f013fb88af5b162c21cd9cbbf99f135)) - Derek Ardolf
 - add documentation site, show_title param, and docs deploy CI - ([cac64bb](https://github.com/saltstack/pydata-hugo-theme/commit/cac64bb507d971d5ba2119222db4eeb33541a6b2)) - Derek Ardolf
 #### Bug Fixes
+- (**devcontainer**) pin Node.js version via a root .node-version file - ([49411f2](https://github.com/saltstack/pydata-hugo-theme/commit/49411f276818cc8e80a00fc78000e91d7aa4589a)) - Derek Ardolf
 - make search work when the docs site is deployed under a subpath - ([a104902](https://github.com/saltstack/pydata-hugo-theme/commit/a1049028aa3c256cb6ffcfbc90d533af4cb8689b)) - Derek Ardolf
 - remove duplicate GitHub icon/nav entry from docs config - ([920a6ee](https://github.com/saltstack/pydata-hugo-theme/commit/920a6ee212b36cb63f5d4bbf6c4eb785070ffef8)) - Derek Ardolf
 - render breadcrumb separator and external-link icons as real elements - ([94cee81](https://github.com/saltstack/pydata-hugo-theme/commit/94cee81c0c81ac850975ddb32460ad675aa6484b)) - Derek Ardolf
