@@ -20,6 +20,57 @@
 }
 
 /* ============================================================
+   Copy-to-clipboard button on fenced code blocks
+   (render-codeblock.html render hook)
+   ============================================================ */
+
+.highlight-wrapper {
+  position: relative;
+}
+
+.highlight-wrapper .copybtn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s ease;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.3rem;
+  color: var(--pst-color-text-muted);
+  border-radius: 4px;
+}
+
+.highlight-wrapper:hover .copybtn,
+.highlight-wrapper .copybtn:focus-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.highlight-wrapper .copybtn:hover {
+  color: var(--pst-color-text-base);
+  background-color: var(--pst-color-surface);
+}
+
+.highlight-wrapper .copybtn .copybtn-icon-copied {
+  display: none;
+}
+
+.highlight-wrapper .copybtn.copybtn--copied .copybtn-icon-default {
+  display: none;
+}
+
+.highlight-wrapper .copybtn.copybtn--copied .copybtn-icon-copied {
+  display: inline;
+}
+
+.highlight-wrapper .copybtn.copybtn--copied {
+  color: var(--pst-color-success, #28a745);
+}
+
+/* ============================================================
    Cross-doc navigation (header-links.html pattern)
    Styles the cross_doc_links partial, using pydata CSS
    variables throughout.
