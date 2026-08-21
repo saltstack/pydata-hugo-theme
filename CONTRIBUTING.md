@@ -89,6 +89,7 @@ Branch off `main` with a short, descriptive name (e.g. `fix/subpath-search-index
 * Open your PR against `main`.
 * CI (`.github/workflows/ci.yml`) validates that every commit in the PR follows Conventional Commits and that `docs/`/`exampleSite/` still build cleanly with Hugo — both must pass before merge.
 * Keep PRs scoped to one logical change where practical; it makes review faster and keeps the generated changelog meaningful.
+* Don't touch `CHANGELOG.md` in your PR. It's only ever written by `cog bump` at release time (see [Releases](#releases)); a PR-time edit to it is guaranteed to go stale or conflict once other PRs merge. Use `just changelog-preview` locally if you want to see what your change will look like in the changelog.
 * A maintainer will review and merge once CI is green. There's no fixed SLA for review turnaround given this project's size — feel free to comment on the PR if it's been quiet for a while.
 
 ### Releases
