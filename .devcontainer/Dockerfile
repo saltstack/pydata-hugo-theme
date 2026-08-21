@@ -16,11 +16,15 @@ RUN HUGO_VERSION="$(cat /tmp/.hugo-version)" \
     && rm /tmp/hugo.deb /tmp/.hugo-version
 
 # Install Node.js, needed to `npm ci` the FontAwesome/Bootstrap build-time
-# deps mounted into the theme via [[module.mounts]] in hugo.toml.
-ARG NODE_MAJOR=22
-RUN curl -fsSL "https://deb.nodesource.com/setup_${NODE_MAJOR}.x" | bash - \
+# deps mounted into the theme via [[module.mounts]] in hugo.toml. Major
+# version pinned via the root .node-version file, same single-source-of-
+# truth pattern as .hugo-version -- CI's actions/setup-node reads the same
+# file, so the devcontainer and GitHub Actions never drift apart.
+COPY .node-version /tmp/.node-version
+RUN NODE_MAJOR="$(cat /tmp/.node-version)" \
+    && curl -fsSL "https://deb.nodesource.com/setup_${NODE_MAJOR}.x" | bash - \
     && apt-get install -y nodejs \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* /tmp/.node-version
 
 # Install Cocogitto (conventional commit tooling)
 COPY .devcontainer/cog-version /tmp/cog-version
