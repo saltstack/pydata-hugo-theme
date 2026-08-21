@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file. See [conventionalcommits.org](https://www.conventionalcommits.org/) for commit guidelines.
 
-## Unreleased ([6f3e675..49411f2](https://github.com/saltstack/pydata-hugo-theme/compare/6f3e675..49411f2))
+## Unreleased ([6f3e675..eefa08e](https://github.com/saltstack/pydata-hugo-theme/compare/6f3e675..eefa08e))
 #### Features
 - add devcontainer for theme development - ([49ebd88](https://github.com/saltstack/pydata-hugo-theme/commit/49ebd88cf684d18ed7fbdd203704a12634046092)) - Derek Ardolf
 - add justfile for common dev tasks - ([d2b516a](https://github.com/saltstack/pydata-hugo-theme/commit/d2b516abb75460c58e4ab55f2d70d859dbe66981)) - Derek Ardolf
@@ -20,6 +20,8 @@ All notable changes to this project will be documented in this file. See [conven
 #### Continuous Integration
 - publish a GitHub Release when a version tag is pushed - ([f87b7d3](https://github.com/saltstack/pydata-hugo-theme/commit/f87b7d36b9eaec5aedf70977ec5da381bef573bb)) - Derek Ardolf
 - validate conventional commits and Hugo builds on every PR - ([3a4cbda](https://github.com/saltstack/pydata-hugo-theme/commit/3a4cbda48d9156abd08db6b7bf55024d6c5f7558)) - Derek Ardolf
+#### Refactoring
+- (**devcontainer**) install Node.js via nvm instead of NodeSource - ([eefa08e](https://github.com/saltstack/pydata-hugo-theme/commit/eefa08e2683dc7d5382ffd7f060723d17e1df81c)) - Derek Ardolf
 
 - - -
 
