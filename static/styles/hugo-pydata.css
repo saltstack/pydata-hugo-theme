@@ -1,6 +1,25 @@
 /* Hugo-specific additions for the pydata theme port */
 
 /* ============================================================
+   Real <i> icons replacing broken CSS pseudo-element icons
+   (the FontAwesome SVG/JS kit only transforms real <i> elements,
+   it can't see :before/:after content).
+   ============================================================ */
+
+.nav-external-icon {
+  font-size: 0.75em;
+  margin-left: 0.3em;
+}
+
+.breadcrumb-separator {
+  display: flex;
+  align-items: center;
+  color: var(--pst-color-text-muted);
+  font-size: 0.8rem;
+  padding: 0 0.5rem;
+}
+
+/* ============================================================
    Cross-doc navigation (header-links.html pattern)
    Styles the cross_doc_links partial, using pydata CSS
    variables throughout.
