@@ -48,3 +48,10 @@ Four slots compose the top navbar, rendered by `header.html`:
 | `footer_end` | `['theme-version']` | Right column |
 
 Every slot value is a list of partial names (without the `.html` extension or path prefix) — set it to `[]` to render nothing, or list your own site-level partials to replace/extend the default.
+
+The `theme-version` footer partial (`Built with the PyData Hugo Theme`, linking to this documentation site) is itself optional in two ways: drop it from `footer_end` entirely (`footer_end = []`) to remove it, or keep it and override just its text via `theme_version_text` in `[params]`:
+
+```toml
+[params]
+  theme_version_text = "Built with Hugo"
+```
