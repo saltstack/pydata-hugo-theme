@@ -6,6 +6,11 @@ title   = 'pydata-hugo-theme'
   [[module.imports]]
     path = "github.com/saltstack/pydata-hugo-theme"
 
+[outputs]
+  home    = ['HTML', 'RSS', 'JSON']
+  section = ['HTML', 'RSS']
+  page    = ['HTML']
+
 [menus]
   [[menus.main]]
     name    = 'Docs'
