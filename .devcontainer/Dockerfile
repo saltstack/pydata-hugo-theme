@@ -15,16 +15,29 @@ RUN HUGO_VERSION="$(cat /tmp/.hugo-version)" \
     && dpkg -i /tmp/hugo.deb \
     && rm /tmp/hugo.deb /tmp/.hugo-version
 
-# Install Node.js, needed to `npm ci` the FontAwesome/Bootstrap build-time
-# deps mounted into the theme via [[module.mounts]] in hugo.toml. Major
-# version pinned via the root .node-version file, same single-source-of-
-# truth pattern as .hugo-version -- CI's actions/setup-node reads the same
-# file, so the devcontainer and GitHub Actions never drift apart.
+# Install Node.js via nvm, needed to `npm ci` the FontAwesome/Bootstrap
+# build-time deps mounted into the theme via [[module.mounts]] in
+# hugo.toml. Version pinned via the root .node-version file, same
+# single-source-of-truth pattern as .hugo-version -- CI's actions/setup-node
+# reads the same file, so the devcontainer and GitHub Actions never drift
+# apart.
+ENV NVM_DIR=/root/.nvm
+COPY .devcontainer/nvm-version /tmp/nvm-version
+RUN NVM_VERSION="$(cat /tmp/nvm-version)" \
+    && curl -fsSL "https://raw.githubusercontent.com/nvm-sh/nvm/v${NVM_VERSION}/install.sh" | bash \
+    && rm /tmp/nvm-version
 COPY .node-version /tmp/.node-version
-RUN NODE_MAJOR="$(cat /tmp/.node-version)" \
-    && curl -fsSL "https://deb.nodesource.com/setup_${NODE_MAJOR}.x" | bash - \
-    && apt-get install -y nodejs \
-    && rm -rf /var/lib/apt/lists/* /tmp/.node-version
+RUN . "$NVM_DIR/nvm.sh" \
+    && NODE_VERSION="$(cat /tmp/.node-version)" \
+    && nvm install "$NODE_VERSION" \
+    && nvm alias default "$NODE_VERSION" \
+    && ln -sf "$(nvm which "$NODE_VERSION")" /usr/local/bin/node \
+    && ln -sf "$(dirname "$(nvm which "$NODE_VERSION")")/npm" /usr/local/bin/npm \
+    && ln -sf "$(dirname "$(nvm which "$NODE_VERSION")")/npx" /usr/local/bin/npx \
+    && rm /tmp/.node-version
+# nvm's own install.sh already appended the sourcing lines needed for
+# interactive shells to /root/.bashrc; the /usr/local/bin symlinks above
+# cover non-interactive shells (postCreateCommand, RUN steps, etc).
 
 # Install Cocogitto (conventional commit tooling)
 COPY .devcontainer/cog-version /tmp/cog-version
