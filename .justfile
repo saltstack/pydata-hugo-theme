@@ -102,6 +102,13 @@ changelog-preview: _ensure-cog
     @echo "cog changelog .."
     @cog changelog ..
 
+# Generate the changelog section for a specific tag (used by the release
+# workflow, which redirects stdout to a file -- diagnostic goes to stderr
+# so it doesn't end up in the captured output)
+changelog-at tag: _ensure-cog
+    @echo "cog changelog --at {{ tag }}" >&2
+    @cog changelog --at {{ tag }}
+
 # --- Release Management Workflow ---
 
 # Automatically calculate the next version, update CHANGELOG.md, and create a git tag

@@ -54,22 +54,21 @@ jobs:
           node-version-file: '.node-version'
           cache: 'npm'
 
+      - name: Install just
+        run: curl --proto '=https' --tlsv1.2 -sSf https://just.systems/install.sh | bash -s -- --to /usr/local/bin
+
       - name: Install npm dependencies
-        run: npm ci
+        run: just sync
 
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v6.0.0
 
       - name: Build docs with Hugo
-        working-directory: docs
         env:
           HUGO_CACHEDIR: ${{ runner.temp }}/hugo_cache
           HUGO_ENVIRONMENT: production
-        run: |
-          hugo \
-            --minify \
-            --baseURL "${{ steps.pages.outputs.base_url }}/"
+        run: just build-docs --baseURL "${{ steps.pages.outputs.base_url }}/"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v5.0.0
