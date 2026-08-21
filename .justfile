@@ -103,7 +103,10 @@ shell:
     if [ "${USE_CONTAINER_DEV}" = "podman" ]; then
         EXTRA_ARGS+=(--userns=keep-id)
     fi
-    exec "${USE_CONTAINER_DEV}" run --rm -it "${EXTRA_ARGS[@]}" -v "${PWD}:/workspace" -w /workspace {{ image }} bash
+    # Not `exec`/`set -e`'d past this point: whatever exit status the last
+    # command run inside the interactive session left behind shouldn't be
+    # reported as this recipe having failed.
+    "${USE_CONTAINER_DEV}" run --rm -it "${EXTRA_ARGS[@]}" -v "${PWD}:/workspace" -w /workspace {{ image }} bash || true
 
 # Set and enable pre-commit-style hooks in repo (conventional commit message validation)
 [group('pre-commit')]

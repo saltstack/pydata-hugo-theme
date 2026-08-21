@@ -39,13 +39,19 @@ RUN . "$NVM_DIR/nvm.sh" \
 # interactive shells to /root/.bashrc; the /usr/local/bin symlinks above
 # cover non-interactive shells (postCreateCommand, RUN steps, etc).
 
-# Install Cocogitto (conventional commit tooling)
+# Install Cocogitto (conventional commit tooling). ENV (not a .bashrc
+# append) so it's on PATH for every process regardless of interactive/
+# login/non-interactive shell status -- .bashrc is only sourced by
+# interactive shells, which would silently break `cog` for the
+# non-interactive `bash -c` invocations the justfile's container wrapper
+# uses for check/bump/etc.
 COPY .devcontainer/cog-version /tmp/cog-version
 RUN COG_VERSION=$(cat /tmp/cog-version) && \
     curl -fSsL "https://github.com/cocogitto/cocogitto/releases/download/${COG_VERSION}/cocogitto-${COG_VERSION}-x86_64-unknown-linux-musl.tar.gz" -o /tmp/cog.tar.gz && \
     mkdir -p /root/.local/bin && \
     tar -xvf /tmp/cog.tar.gz -C /root/.local/bin/ --strip-components=1 x86_64-unknown-linux-musl/cog && \
     rm /tmp/cog-version /tmp/cog.tar.gz
+ENV PATH="/root/.local/bin:${PATH}"
 
 # Install GitHub CLI
 RUN (type -p wget >/dev/null || (apt update && apt install wget -y)) \
@@ -58,7 +64,5 @@ RUN (type -p wget >/dev/null || (apt update && apt install wget -y)) \
 	&& apt update \
 	&& apt install gh -y \
 	&& rm -rf /var/lib/apt/lists/*
-
-RUN echo 'export PATH="/root/.local/bin:$PATH"' >> /root/.bashrc
 
 WORKDIR /workspace
