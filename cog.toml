@@ -1,0 +1,35 @@
+#:schema https://docs.cocogitto.io/cog-schema.json
+# For a reference of possible values: https://docs.cocogitto.io/config/
+
+# A list of glob patterns describing branches on which semver bump are allowed
+branch_whitelist = ["main"]
+
+# Ignore merge commits from conventional commit checks
+ignore_merge_commits = true
+from_latest_tag = true
+tag_prefix = "v"
+
+post_bump_hooks = [
+    "echo 'To UNDO, run:'",
+    "echo 'just undo-bump'",
+    "echo '---'",
+    "echo 'To make LIVE, run:'",
+    "echo 'git push'",
+    "echo 'git push origin v{{version}}'",
+]
+
+[changelog]
+path = "CHANGELOG.md"
+template = "changelog-template.tera"
+remote = "github.com"
+owner = "saltstack"
+repository = "pydata-hugo-theme"
+
+[bump_profiles]
+# Custom profiles can be added here if you have specific branching strategies
+# e.g., prerelease = { pre_bump_hooks = [...], post_bump_hooks = [...] }
+
+[commit_types]
+# Standard Conventional Commits types
+chore = { omit_from_changelog = true }
+test = { omit_from_changelog = true }
