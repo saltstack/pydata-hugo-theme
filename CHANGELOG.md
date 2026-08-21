@@ -2,6 +2,7 @@
 
 All notable changes to this project will be documented in this file. See [conventionalcommits.org](https://www.conventionalcommits.org/) for commit guidelines.
 
+- - -
 ## [v0.1.0](https://github.com/saltstack/pydata-hugo-theme/compare/4e4772790f484c0990106e6e8ceef25dd063cc94..v0.1.0) - 2026-08-17
 #### Features
 - initial extraction of pydata Hugo theme as a standalone Hugo module - ([4e47727](https://github.com/saltstack/pydata-hugo-theme/commit/4e4772790f484c0990106e6e8ceef25dd063cc94))
