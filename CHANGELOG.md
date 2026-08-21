@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file. See [conventionalcommits.org](https://www.conventionalcommits.org/) for commit guidelines.
 
-## Unreleased ([6f3e675..eefa08e](https://github.com/saltstack/pydata-hugo-theme/compare/6f3e675..eefa08e))
+## Unreleased ([6f3e675..15e1559](https://github.com/saltstack/pydata-hugo-theme/compare/6f3e675..15e1559))
 #### Features
 - add devcontainer for theme development - ([49ebd88](https://github.com/saltstack/pydata-hugo-theme/commit/49ebd88cf684d18ed7fbdd203704a12634046092)) - Derek Ardolf
 - add justfile for common dev tasks - ([d2b516a](https://github.com/saltstack/pydata-hugo-theme/commit/d2b516abb75460c58e4ab55f2d70d859dbe66981)) - Derek Ardolf
@@ -16,6 +16,7 @@ All notable changes to this project will be documented in this file. See [conven
 - render breadcrumb separator and external-link icons as real elements - ([94cee81](https://github.com/saltstack/pydata-hugo-theme/commit/94cee81c0c81ac850975ddb32460ad675aa6484b)) - Derek Ardolf
 - resolve navbar/sidebar/breadcrumb home links under a baseURL subpath - ([0c0c8d1](https://github.com/saltstack/pydata-hugo-theme/commit/0c0c8d1a97ec54a2c61bcc2a50afc0e255d6f182)) - Derek Ardolf
 #### Documentation
+- add CONTRIBUTING.md and record the upstream reference version - ([15e1559](https://github.com/saltstack/pydata-hugo-theme/commit/15e1559e80d1d5cace975c1044858a23b5ca9ee2)) - Derek Ardolf
 - correct feature-parity table and document search/icon_links gotchas - ([b828ccf](https://github.com/saltstack/pydata-hugo-theme/commit/b828ccffa99722af74fc0c043c663cb12e762ef6)) - Derek Ardolf
 #### Continuous Integration
 - publish a GitHub Release when a version tag is pushed - ([f87b7d3](https://github.com/saltstack/pydata-hugo-theme/commit/f87b7d36b9eaec5aedf70977ec5da381bef573bb)) - Derek Ardolf
