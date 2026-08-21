@@ -6,14 +6,18 @@ ENGINE := env_var_or_default("USE_CONTAINER_DEV", "")
 
 # When USE_CONTAINER_DEV is set to podman/docker, wraps a command to run
 # inside the devcontainer image instead of on the host (build it first with
-# `just build-devcontainer`). Mounts the repo at /workspace. --userns=keep-id
-# (podman only) maps container root to the host UID/GID, so files written
-# into the bind-mounted repo aren't left root-owned.
+# `just build-devcontainer`). Mounts the repo at /workspace. No --userns
+# flag for podman: our image has no USER directive (everything, including
+# /root/.local/bin, is built as root), and rootless podman's *default*
+# namespace already maps that in-container root to the invoking host user
+# for bind-mount purposes -- --userns=keep-id would instead force the
+# container's default process to run as the host UID (not root), which
+# can't read /root/.local/bin at all.
 wrapper := `
     if [ -n "${USE_CONTAINER_DEV:-}" ]; then
         case "${USE_CONTAINER_DEV}" in
             podman)
-                echo "podman run --rm -it --userns=keep-id -v ${PWD}:/workspace -w /workspace localhost/pydata-hugo-theme-dev:latest bash -c '"
+                echo "podman run --rm -it -v ${PWD}:/workspace -w /workspace localhost/pydata-hugo-theme-dev:latest bash -c '"
                 ;;
             docker)
                 echo "docker run --rm -it -v ${PWD}:/workspace -w /workspace localhost/pydata-hugo-theme-dev:latest bash -c '"
@@ -99,14 +103,10 @@ shell:
         echo "USE_CONTAINER_DEV is not set. Set it to podman or docker to use this."
         exit 1
     fi
-    EXTRA_ARGS=()
-    if [ "${USE_CONTAINER_DEV}" = "podman" ]; then
-        EXTRA_ARGS+=(--userns=keep-id)
-    fi
     # Not `exec`/`set -e`'d past this point: whatever exit status the last
     # command run inside the interactive session left behind shouldn't be
     # reported as this recipe having failed.
-    "${USE_CONTAINER_DEV}" run --rm -it "${EXTRA_ARGS[@]}" -v "${PWD}:/workspace" -w /workspace {{ image }} bash || true
+    "${USE_CONTAINER_DEV}" run --rm -it -v "${PWD}:/workspace" -w /workspace {{ image }} bash || true
 
 # Set and enable pre-commit-style hooks in repo (conventional commit message validation)
 [group('pre-commit')]
